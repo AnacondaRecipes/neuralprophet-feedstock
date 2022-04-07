@@ -7,7 +7,7 @@ package:
 
 build:
   number: 0
-  skip: true  # [py<36 or win32]
+  skip: true  # [py<36 or win32 or s390x]
   script: {{ PYTHON }} -m pip install . -vv
 
 source:
