@@ -44,7 +44,7 @@ test:
     - neuralprophet
   commands:
     # neuralprophet 0.3.2 requires dataclasses, which is not installed.
-    # but dataclasses 0.8 is available
+    # but dataclasses 0.8 is available.
     #- pip check
   requires:
     - pip
