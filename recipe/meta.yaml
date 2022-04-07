@@ -7,7 +7,10 @@ package:
 
 build:
   number: 0
+  # lunarcalendar dependencies currently aren't availabl on s390x
   skip: true  # [py<36 or win32 or s390x]
+  # Unsatisfiable dependencies for platform linux-ppc64le with python 3.10
+  skip: true  # [py==310 and (linux and ppc64le)]
   script: {{ PYTHON }} -m pip install . -vv
 
 source:
