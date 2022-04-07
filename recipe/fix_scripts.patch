@@ -1,0 +1,54 @@
+From b9bae9159f52f205ccc57bb08b2b9d1c76ed5c03 Mon Sep 17 00:00:00 2001
+From: Serhii Kupriienko
+Date: Wed, 6 Apr 2022 11:48:19 +0000
+Subject: [PATCH] fix scripts
+
+---
+ scripts/neuralprophet_dev_setup.py | 21 +++++++++++++++++++++
+ setup.py                           |  2 +-
+ 2 files changed, 22 insertions(+), 1 deletion(-)
+ create mode 100644 scripts/neuralprophet_dev_setup.py
+
+diff --git a/scripts/neuralprophet_dev_setup.py b/scripts/neuralprophet_dev_setup.py
+new file mode 100644
+index 0000000..867c276
+--- /dev/null
++++ b/scripts/neuralprophet_dev_setup.py
+@@ -0,0 +1,21 @@
++#!/usr/bin/env python3
++
++import os
++import subprocess
++
++
++def install_hooks():
++    dir_scripts = os.path.abspath(os.path.dirname(__file__))
++    script_files = [
++        "install_hooks.bash",
++        "pre_commit.bash",
++        "pre_push.bash",
++    ]
++    for script_f in script_files:
++        file = os.path.join(dir_scripts, script_f)
++        subprocess.check_call(["chmod", "a+rwx", file])
++    subprocess.call(os.path.join(dir_scripts, "install_hooks.bash"), shell=True)
++
++
++if __name__ == "__main__":
++    install_hooks()
+diff --git a/setup.py b/setup.py
+index 886e1cd..3412fd2 100644
+--- a/setup.py
++++ b/setup.py
+@@ -33,7 +33,7 @@ setuptools.setup(
+         "live": ["livelossplot>=0.5.3"],
+     },
+     # setup_requires=[""],
+-    scripts=["scripts/neuralprophet_dev_setup"],
++    scripts=["scripts/neuralprophet_dev_setup.py"],
+     long_description=readme,
+     long_description_content_type="text/markdown",
+     include_package_data=True,
+-- 
+2.34.1
+
