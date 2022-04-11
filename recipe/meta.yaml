@@ -29,7 +29,8 @@ requirements:
     - wheel
   run:
     - convertdate >=2.1.2
-    - dataclasses >=0.6
+    # Fixed in 0.3.3 RC https://github.com/ourownstory/neural_prophet/commit/ceabfca7a11b9501e318b78b032251601268eaeb
+    - dataclasses >=0.6  # [py<37]
     - holidays >=0.11.3.1
     - ipywidgets >=7.5.1
     - lunarcalendar >=0.0.9
@@ -45,12 +46,17 @@ requirements:
 test:
   imports:
     - neuralprophet
+  source_files:
+    - tests/
+  requires:
+    - pip
+    - pytest
+    - pytest-cov
   commands:
     # neuralprophet 0.3.2 requires dataclasses, which is not installed.
     # but dataclasses 0.8 is available.
     #- pip check
-  requires:
-    - pip
+    - pytest -v --cov=./ --cov-report=xml
 
 about:
   home: https://neuralprophet.com/
