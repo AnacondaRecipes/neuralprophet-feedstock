@@ -14,7 +14,3 @@ future = m.make_future_dataframe(df=df, periods=365)
 print(future)
 forecast = m.predict(df=future)
 print(forecast)
-
-df_train, df_test = m.split_df(df, valid_p=0.2)
-metrics = m.fit(df_train, validation_df=df_test)
-print(metrics)
