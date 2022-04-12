@@ -7,7 +7,10 @@ package:
 
 build:
   number: 0
-  skip: true  # [py<36 or win32]
+  # lunarcalendar dependencies currently aren't availabl on s390x
+  skip: true  # [py<36 or win32 or s390x]
+  # Unsatisfiable dependencies for platform linux-ppc64le with python 3.10
+  skip: true  # [py==310 and (linux and ppc64le)]
   script: {{ PYTHON }} -m pip install . -vv
 
 source:
@@ -26,7 +29,8 @@ requirements:
     - wheel
   run:
     - convertdate >=2.1.2
-    - dataclasses >=0.6
+    # Fixed in 0.3.3 RC https://github.com/ourownstory/neural_prophet/commit/ceabfca7a11b9501e318b78b032251601268eaeb
+    - dataclasses >=0.6  # [py<37]
     - holidays >=0.11.3.1
     - ipywidgets >=7.5.1
     - lunarcalendar >=0.0.9
@@ -42,12 +46,17 @@ requirements:
 test:
   imports:
     - neuralprophet
-  commands:
-    # neuralprophet 0.3.2 requires dataclasses, which is not installed.
-    # but dataclasses 0.8 is available
-    #- pip check
+  source_files:
+    - tests/
   requires:
     - pip
+    - pytest
+    - pytest-cov
+  commands:
+    # neuralprophet 0.3.2 requires dataclasses, which is not installed.
+    # but dataclasses 0.8 is available.
+    #- pip check
+    - pytest -v --cov=./ --cov-report=xml  # [not (py==37 or py==310 or (linux and ppc64le))]
 
 about:
   home: https://neuralprophet.com/
