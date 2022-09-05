@@ -6,11 +6,9 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
   # lunarcalendar dependencies currently aren't availabl on s390x
   skip: true  # [py<36 or win32 or s390x]
-  # Unsatisfiable dependencies for platform linux-ppc64le with python 3.10
-  skip: true  # [py==310 and (linux and ppc64le)]
   script: {{ PYTHON }} -m pip install . -vv
 
 source:
@@ -64,5 +62,6 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
+  license_url: https://github.com/ourownstory/neural_prophet/blob/main/LICENSE
   dev_url: https://github.com/ourownstory/neural_prophet
   doc_url: https://neuralprophet.com/html/contents.html
