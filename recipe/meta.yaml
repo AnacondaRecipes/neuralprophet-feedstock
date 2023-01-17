@@ -28,7 +28,7 @@ requirements:
   run:
     - convertdate >=2.1.2
     - dataclasses >=0.6  # [py<37]
-    - holidays >=0.11.3.1
+    - holidays >=0.13
     - ipywidgets >=7.5.1
     - lunarcalendar >=0.0.9
     - matplotlib-base >=2.0.0
