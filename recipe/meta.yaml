@@ -14,8 +14,6 @@ build:
 source:
   url: https://github.com/ourownstory/neural_prophet/archive/refs/tags/{{ version }}.tar.gz
   sha256: 9dea912dc0ef238ccef30b59fc448a430e0f47818ce20502e662e94e4ddc5dc1
-  patches:
-    # - fix_scripts.patch
 
 requirements:
   host:
