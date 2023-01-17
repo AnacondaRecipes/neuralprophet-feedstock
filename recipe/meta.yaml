@@ -49,8 +49,6 @@ test:
     - pip
     - pytest
   commands:
-    # neuralprophet 0.3.2 requires dataclasses, which is not installed.
-    # but dataclasses 0.8 is available.
     - pip check
     - pytest -v tests  # [not (py==37 or py==310 or (linux and ppc64le))]
 about:
