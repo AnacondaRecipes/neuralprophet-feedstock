@@ -52,8 +52,7 @@ test:
     # neuralprophet 0.3.2 requires dataclasses, which is not installed.
     # but dataclasses 0.8 is available.
     - pip check
-    # regularization_holidays test fails due to an incorrect upstream requirement
-    - pytest -k "not regularization_holidays" -v tests  # [not (py==37 or py==310 or (linux and ppc64le))]
+    - pytest -v tests  # [not (py==37 or py==310 or (linux and ppc64le))]
 about:
   home: https://neuralprophet.com/
   summary: Explainable Forecasting at Scale
