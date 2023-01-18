@@ -8,7 +8,7 @@ package:
 build:
   number: 1
   # lunarcalendar dependencies currently aren't availabl on s390x
-  skip: true  # [py<36]
+  skip: true  # [py<36 or s390x]
   script: {{ PYTHON }} -m pip install . -vv
 
 source:
