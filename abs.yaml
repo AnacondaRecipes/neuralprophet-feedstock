@@ -1,4 +1,0 @@
-aggregate_check: false
-
-channels:
-  - dp_test
