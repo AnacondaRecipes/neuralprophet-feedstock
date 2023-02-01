@@ -54,9 +54,9 @@ test:
 about:
   home: https://neuralprophet.com/
   summary: Explainable Forecasting at Scale
+  description: NeuralProphet bridges the gap between traditional time-series models and deep learning methods.
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  license_url: https://github.com/ourownstory/neural_prophet/blob/main/LICENSE
   dev_url: https://github.com/ourownstory/neural_prophet
   doc_url: https://neuralprophet.com/contents.html
