@@ -17,8 +17,8 @@ source:
 
 requirements:
   host:
-    - m2-patch  # [win] 
-    - patch     # [not win]
+    - m2-patch  # [win64] 
+    - patch     # [not win64]
     - pip
     - python
     - setuptools
