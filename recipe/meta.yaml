@@ -31,6 +31,8 @@ requirements:
     - pytorch >=1.8.0
     - lunarcalendar >=0.0.9
     - convertdate >=2.1.2
+    # Holidays minimum requirement increased due to error with
+    # tests/test_regularization.py::test_regularization_holidays
     - holidays >=0.13
     - python-dateutil >=2.8.0
     - tqdm >=4.50.2
