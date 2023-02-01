@@ -6,10 +6,10 @@ package:
   version: {{ version }}
 
 build:
-  number: 1
-  # lunarcalendar dependencies currently aren't availabl on s390x
-  skip: true  # [py<36 or win32 or s390x]
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+  # lunarcalendar dependencies currently aren't available on s390x
+  skip: true  # [py<36 or s390x]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 source:
   url: https://github.com/ourownstory/neural_prophet/archive/refs/tags/{{ version }}.tar.gz
