@@ -17,8 +17,6 @@ source:
 
 requirements:
   host:
-    - m2-patch  # [win64] 
-    - patch     # [not win64]
     - pip
     - python
     - setuptools
@@ -52,7 +50,7 @@ test:
     - pytest
   commands:
     - pip check
-    - pytest -v tests  # [not (py==37 or py==310 or (linux and ppc64le))]
+    - pytest -v tests
 about:
   home: https://neuralprophet.com/
   summary: Explainable Forecasting at Scale
