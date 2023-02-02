@@ -43,7 +43,7 @@ test:
   imports:
     - neuralprophet
   source_files:
-    - tests/  
+    - tests/
   requires:
     - pip
     - pytest
