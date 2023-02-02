@@ -50,7 +50,8 @@ test:
     - pytest
   commands:
     - pip check
-    - pytest -v tests
+    - pytest -v tests  # [unix]
+    - pytest -v tests -k "not test_wrapper_plots"  # [win]
 about:
   home: https://neuralprophet.com/
   summary: Explainable Forecasting at Scale
