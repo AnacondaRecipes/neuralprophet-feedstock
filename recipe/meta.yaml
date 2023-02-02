@@ -1,45 +1,44 @@
 {% set name = "neuralprophet" %}
-{% set version = "0.3.2" %}
+{% set version = "0.4.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 build:
-  number: 1
-  # lunarcalendar dependencies currently aren't availabl on s390x
-  skip: true  # [py<36 or win32 or s390x]
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+  # Unsatisfiable dependencies on s390x
+  skip: true  # [py<36 or s390x]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/neuralprophet-{{ version }}.tar.gz
-  sha256: 7df64ae1243c33b6434e993b56e9712fa7cf4b6dcb00958dd309b331fa193bde
-  patches:
-    - fix_scripts.patch
+  url: https://github.com/ourownstory/neural_prophet/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 9dea912dc0ef238ccef30b59fc448a430e0f47818ce20502e662e94e4ddc5dc1
 
 requirements:
   host:
-    - m2-patch  # [win] 
-    - patch     # [not win]
     - pip
     - python
     - setuptools
     - wheel
   run:
-    - convertdate >=2.1.2
-    # Fixed in 0.3.3 RC https://github.com/ourownstory/neural_prophet/commit/ceabfca7a11b9501e318b78b032251601268eaeb
-    - dataclasses >=0.6  # [py<37]
-    - holidays >=0.11.3.1
-    - ipywidgets >=7.5.1
-    - lunarcalendar >=0.0.9
-    - matplotlib-base >=2.0.0
+    - python
     - numpy >=1.15.4
     - pandas >=1.0.4
-    - python
+    - matplotlib-base >=2.0.0
+    - pytorch >=1.8.0
+    - lunarcalendar >=0.0.9
+    - convertdate >=2.1.2
+    # Holidays minimum requirement increased due to error with
+    # tests/test_regularization.py::test_regularization_holidays
+    - holidays >=0.13
     - python-dateutil >=2.8.0
-    - pytorch >=1.4.0
-    - torch-lr-finder >=0.2.1
     - tqdm >=4.50.2
+    - torch-lr-finder >=0.2.1
+    - typing_extensions >=4.4.0  # [py<38]
+    - ipywidgets >=7.5.1
+    - plotly >=4.14.3
+    - dataclasses >=0.6  # [py<37]
 
 test:
   imports:
@@ -49,19 +48,15 @@ test:
   requires:
     - pip
     - pytest
-    - pytest-cov
   commands:
-    # neuralprophet 0.3.2 requires dataclasses, which is not installed.
-    # but dataclasses 0.8 is available.
-    #- pip check
-    - pytest -v --cov=./ --cov-report=xml  # [not (py==37 or py==310 or (linux and ppc64le))]
-
+    - pip check
+    - pytest -v tests
 about:
   home: https://neuralprophet.com/
   summary: Explainable Forecasting at Scale
+  description: NeuralProphet bridges the gap between traditional time-series models and deep learning methods.
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  license_url: https://github.com/ourownstory/neural_prophet/blob/main/LICENSE
   dev_url: https://github.com/ourownstory/neural_prophet
-  doc_url: https://neuralprophet.com/html/contents.html
+  doc_url: https://neuralprophet.com/contents.html
