@@ -52,6 +52,8 @@ test:
     - pip check
     - pytest -v tests  # [unix]
     - pytest -v tests -k "not test_wrapper_plots"  # [win]
+    - pytest -v tests -k "test_dict_input"  # [win]
+    
 about:
   home: https://neuralprophet.com/
   summary: Explainable Forecasting at Scale
