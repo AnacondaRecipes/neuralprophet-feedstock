@@ -51,10 +51,15 @@ test:
   commands:
     - pip check
     - pytest -v tests
+
 about:
   home: https://neuralprophet.com/
-  summary: Explainable Forecasting at Scale
-  description: NeuralProphet bridges the gap between traditional time-series models and deep learning methods.
+  summary: NeuralProphet is an easy to learn framework for interpretable time series forecasting
+  description: |
+    NeuralProphet is an easy to learn framework for interpretable time
+    series forecasting. NeuralProphet is built on PyTorch and combines
+    Neural Networks and traditional time-series algorithms, inspired
+    by Facebook Prophet and AR-Net.
   license: MIT
   license_family: MIT
   license_file: LICENSE
