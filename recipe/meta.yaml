@@ -9,9 +9,7 @@ build:
   number: 0
   # Unsatisfiable dependencies on s390x
   # No poetry for py312
-  #
-  # No pytorch-lightning for >=py311 if pytorch-lightning<2.0.0
-  skip: true  # [(py<39 or py>310) or s390x]
+  skip: true  # [py<39 or py>311]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 source:
