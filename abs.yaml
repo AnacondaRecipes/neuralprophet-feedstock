@@ -1,0 +1,2 @@
+channels:
+  - https://staging.continuum.io/prefect/fs/pytorch-lightning-feedstock
