@@ -1,2 +1,2 @@
 channels:
-  - https://staging.continuum.io/prefect/fs/pytorch-lightning-feedstock
+  - https://staging.continuum.io/prefect/fs/pytorch-lightning-feedstock/pr6/174b2af
