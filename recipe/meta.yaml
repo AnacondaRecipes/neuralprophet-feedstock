@@ -7,9 +7,10 @@ package:
 
 build:
   number: 0
-  # Unsatisfiable dependencies on s390x
-  # No poetry for py312
+  # No poetry for py312, therefore skip py312
   skip: true  # [py<39 or py>311]
+  # skipping win and s390x because of missing tensorboard
+  skip: true  # [win or s390x]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 source:
