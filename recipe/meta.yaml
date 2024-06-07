@@ -49,7 +49,7 @@ test:
     - ipython
     # Although, technically, an extra == "plotly-resampler" the tests
     # requiring it are run anyway
-    - plotly-resampler
+    - plotly-resampler  # [py<312]
     # one test, tests/test_plotting.py::test_plot[plotly-static], requires
     - python-kaleido
   commands:
