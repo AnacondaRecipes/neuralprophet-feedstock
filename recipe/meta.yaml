@@ -1,5 +1,5 @@
 {% set name = "neuralprophet" %}
-{% set version = "0.4.2" %}
+{% set version = "0.8.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,38 +7,36 @@ package:
 
 build:
   number: 0
-  # Unsatisfiable dependencies on s390x
-  skip: true  # [py<36 or s390x]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  # No poetry for py312, therefore skip py312
+  skip: true  # [py<39 or py>311]
+  # skipping win and s390x because of missing tensorboard
+  skip: true  # [win or s390x]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 source:
   url: https://github.com/ourownstory/neural_prophet/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 9dea912dc0ef238ccef30b59fc448a430e0f47818ce20502e662e94e4ddc5dc1
+  sha256: fc9490ac42f878524669189482368c82243d7138a078cebdf1ae3f5d76de2414
 
 requirements:
   host:
     - pip
     - python
-    - setuptools
+    - poetry
     - wheel
   run:
     - python
-    - numpy >=1.15.4
-    - pandas >=1.0.4
-    - matplotlib-base >=2.0.0
-    - pytorch >=1.8.0
-    - lunarcalendar >=0.0.9
-    - convertdate >=2.1.2
-    # Holidays minimum requirement increased due to error with
-    # tests/test_regularization.py::test_regularization_holidays
-    - holidays >=0.13
-    - python-dateutil >=2.8.0
-    - tqdm >=4.50.2
-    - torch-lr-finder >=0.2.1
-    - typing_extensions >=4.4.0  # [py<38]
-    - ipywidgets >=7.5.1
-    - plotly >=4.14.3
-    - dataclasses >=0.6  # [py<37]
+    - nbformat >=5.8.0,<6.0.0
+    - numpy >=1.25.0,<2.0.0
+    - pandas >=2.0.0,<3.0.0
+    - matplotlib-base >=3.5.3,<4.0.0
+    - pytorch >=2.0.0,<3.0.0
+    - torchmetrics >=1.0.0,<2.0.0
+    - holidays >=0.41
+    - typing_extensions >=4.5.0,<5.0.0
+    - plotly >=5.13.1,<6.0.0
+    - pytorch-lightning >=1.9.4,<2.0.0
+    - tensorboard >=2.11.2,<3.0.0
+    - captum >=0.6.0
 
 test:
   imports:
@@ -48,13 +46,24 @@ test:
   requires:
     - pip
     - pytest
+    - ipython
+    # Although, technically, an extra == "plotly-resampler" the tests
+    # requiring it are run anyway
+    - plotly-resampler  # [py<312]
+    # one test, tests/test_plotting.py::test_plot[plotly-static], requires
+    - python-kaleido
   commands:
     - pip check
     - pytest -v tests
+
 about:
   home: https://neuralprophet.com/
-  summary: Explainable Forecasting at Scale
-  description: NeuralProphet bridges the gap between traditional time-series models and deep learning methods.
+  summary: NeuralProphet is an easy to learn framework for interpretable time series forecasting
+  description: |
+    NeuralProphet is an easy to learn framework for interpretable time
+    series forecasting. NeuralProphet is built on PyTorch and combines
+    Neural Networks and traditional time-series algorithms, inspired
+    by Facebook Prophet and AR-Net.
   license: MIT
   license_family: MIT
   license_file: LICENSE
